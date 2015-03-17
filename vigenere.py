@@ -43,14 +43,3 @@ def dec(c, k):
 
     return ''.join(m)
 
-
-
-
-
-
-
-
-
-
-
-
