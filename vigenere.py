@@ -14,32 +14,20 @@ def gen(keysize):
 
 def enc(m, k):
     m = sanitize(m)
-    
     c = []
     k_len = len(k)
+
     for i in xrange(0, len(m)):
-        char = m[i]
-        char = ord(char)
-        char -= OFFSET
-        char = (char + ord(k[i % k_len])) % 26
-        char += OFFSET
-        char = chr(char)
-        c.append(char)
+        c.append(chr((ord(m[i])-OFFSET+ord(k[i%k_len])-OFFSET)%26+OFFSET))
 
     return ''.join(c)
 
 def dec(c, k):
-   
     m = [] 
     k_len = len(k)
+
     for i in xrange(0, len(c)):
-        char = c[i]
-        char = ord(char)
-        char -= OFFSET
-        char = (char - ord(k[i % k_len])) % 26
-        char += OFFSET
-        char = chr(char)
-        m.append(char)
+        m.append(chr(((ord(c[i])-OFFSET)-(ord(k[i%k_len])-OFFSET))%26+OFFSET))
 
     return ''.join(m)
 
